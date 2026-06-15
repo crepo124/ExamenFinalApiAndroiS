@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Game = require('../models/Game')
 
-// /api/games  o  /api/games?genre=accion
 router.get('/', async (req, res) => {
     try {
         const { genre } = req.query

@@ -1,6 +1,13 @@
 const mongoose = require('mongoose')
 const Game = require('./models/Game')
+const User = require('./models/User')
 require('dotenv').config()
+
+const users = [
+    { username: "user1", password: "password1" },
+    { username: "user2", password: "password2" },
+    { username: "user3", password: "password3" }
+]
 
 const games = [
     { name: "Call of Duty: Modern Warfare", image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wkb.jpg", price: 59.99, genre: "disparos", description: "El shooter táctico más realista del mercado." },
@@ -39,6 +46,12 @@ async function seed() {
 
     await Game.insertMany(games)
     console.log('25 juegos insertados correctamente')
+
+    await User.deleteMany({})
+    console.log('Usuarios anteriores eliminados')
+
+    await User.insertMany(users)
+    console.log('3 usuarios insertados correctamente')
 
     await mongoose.disconnect()
     console.log('Listo!')
